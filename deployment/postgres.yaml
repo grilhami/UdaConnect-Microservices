@@ -63,20 +63,11 @@ spec:
             - containerPort: 5432
           env:
           - name: POSTGRES_USER
-            valueFrom:
-              configMapKeyRef:
-                name: db-env
-                key: DB_USERNAME
+            value: "ct_admin"
           - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: db-secret
-                key: DB_PASSWORD
+            value: "password"
           - name: POSTGRES_DB
-            valueFrom:
-              configMapKeyRef:
-                name: db-env
-                key: DB_NAME
+            value: "geoconnections"
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgresdb

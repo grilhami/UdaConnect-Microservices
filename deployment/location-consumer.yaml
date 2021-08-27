@@ -1,0 +1,39 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: udaconnect-location-consumer
+  name: udaconnect-location-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udaconnect-location-consumer
+  template:
+    metadata:
+      labels:
+        service: udaconnect-location-consumer
+    spec:
+      containers:
+      - image: gilang1997/udaconnect-location-consumer:v1.0.0
+        name: udaconnect-location-consumer
+        imagePullPolicy: Always
+        env:
+        - name: KAFKA_TOPIC
+          value: "test"
+        - name: KAFKA_HOST
+          value: "my-release-kafka-0.my-release-kafka-headless.default.svc.cluster.local"
+        - name: KAFKA_PORT
+          value: "9092"
+        - name: DB_USERNAME
+          value: "ct_admin"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_HOST
+          value: "postgres"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: "geoconnections"
+      restartPolicy: Always

@@ -9,9 +9,9 @@ import location_pb2_grpc
 
 from kafka import KafkaProducer
 
-KAFKA_TOPIC = os.environ["KAFKA_TOPIC"]
-KAFKA_HOST = os.environ["KAFKA_HOST"]
-KAFKA_PORT = os.environ["KAFKA_PORT"]
+KAFKA_TOPIC = "test"
+KAFKA_HOST = "localhost"	
+KAFKA_PORT = 30002
 
 KAFKA_SERVER = f"{KAFKA_HOST}:{KAFKA_PORT}"
 
@@ -35,7 +35,7 @@ class LocationServicer(location_pb2_grpc.LocationServiceServicer):
 
         kafka_producer = producer
 
-        kafka_producer.send(TOPIC_NAME, json_message)
+        kafka_producer.send(KAFKA_TOPIC, json_message)
 
         return location_pb2.Empty()
 
