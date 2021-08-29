@@ -16,7 +16,7 @@ location = location_pb2.LocationMessage(
     person_id=5,
     longitude=-76.23489283,
     latitude=832.86789,
-    creation_time='2020-03-12',
+    creation_time='2021-08-30',
 )
 
 

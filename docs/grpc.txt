@@ -1,0 +1,7 @@
+On my deployment of gRPC in Docker Desktop K8s the host is localhost:30003 - so depending how you deploy this project this might change for you.
+
+To send a sample payload to the location gRPC service, you can run the "writer.py" file in the "module" folder.
+
+To check if the payload is stored in the database, you can run the "getter.py" file in the "module" folder.
+
+This is only for testing, since gRPC is intended to interact with the client in the mobile app.

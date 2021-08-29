@@ -46,7 +46,7 @@ with db.connect() as conn:
         person_id = msg_data['person_id']
         longitude = msg_data['longitude']
         latitude = msg_data['latitude']
-        creation_time = datetime.now()
+        creation_time =  datetime.strptime(msg_data['creation_time'],"%Y-%m-%d")
 
         # Create
         insert_statement = location_table.insert().values(person_id=person_id, coordinate=ST_Point(latitude, longitude), creation_time=creation_time)

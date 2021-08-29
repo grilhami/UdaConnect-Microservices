@@ -1,0 +1,29 @@
+Since there was no specifics about how the user will interact with the application, I consider two assumptions:
+- Location is send frequently
+- Creating a user goes through a sign up process
+
+Using REST:
+
+I decided to use REST for Person since want to make sure there is a clear structure for the information being sent to sign up.
+When a user is signing up, specific information are required. Therefore, using REST allows business logic behind the API to
+verify and authentificate if the information being sent is valid. Also, it is less likely that a massive amount of loads
+will preassured the infrastrucre on which the API is running on, since user will take time to actually fill in the required information.
+
+For Connections, I decided to use REST because of the conviency of k8s to scale the number of service in the case of massive 
+amount of loads. However, this will be much more efficient if the calculation to find the connections happens in another service.
+In the case that scaling the Connections service to multiple nodes becomes more expensive, it's better to provide some kind of ETL 
+pipeline before storing location information to calculate the the distance between people within a certain time.
+
+Using gRPC:
+
+gRPC is primarily used to handle Location data. If location data is being sent frequently, then we want to aim for performance, which
+gRPC does a better job than REST asssuming the same number of resources. Instead of the client waiting a response from the server, gRPC 
+allows an asynchronus process where it is able to process a request while doing other stuff also on the side.
+
+Using Kafka:
+
+Kafka is primarily used to receive location data, process it, and store it in the database. As the gRPC service sent data to the Kafka
+broker, a consumer is waiting to receive that data and store it in the database. Since location data happens frequently, we need to make
+sure that flow of data is persistent and fault tolerance. Kafka does this very well, since it makes duplicates of the same data in the case
+something broke down. Additionally, by having a consumer receiving the data before the database, processing can be done to make sure that
+the data coming on the database is the expected format.
