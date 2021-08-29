@@ -85,3 +85,14 @@ Person REST API Service
 UdaConnect App Frontend Service
 
 `kubectl apply -f deployment/frontend.yaml`
+
+## Step 5: Testing
+
+Testing REST APIs:
+- Import `postman.json` to Postman
+- Run the APIs listed in the collection
+
+Testing gRPC:
+- Go to the `/module/location_grpc_service` directory and create a virtual environment
+- Create a sample payload by running `writer.py`
+- Check if the data is stored by running `getter.py`
