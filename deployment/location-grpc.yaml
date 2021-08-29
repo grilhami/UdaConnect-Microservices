@@ -41,4 +41,14 @@ spec:
           value: "my-release-kafka-0.my-release-kafka-headless.default.svc.cluster.local"
         - name: KAFKA_PORT
           value: "9092"
+        - name: DB_USERNAME
+          value: "ct_admin"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_HOST
+          value: "postgres"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: "geoconnections"
       restartPolicy: Always

@@ -15,11 +15,11 @@ from sqlalchemy import Table, Column, String, MetaData, DateTime
 from geoalchemy2 import Geometry
 from geoalchemy2.shape import to_shape 
 
-DB_USERNAME = "ct_admin"
-DB_PASSWORD = "password"
-DB_HOST = "localhost"
-DB_PORT = 30518
-DB_NAME = "geoconnections"
+DB_USERNAME = os.environ["DB_USERNAME"]
+DB_PASSWORD = os.environ["DB_PASSWORD"]
+DB_HOST = os.environ["DB_HOST"]
+DB_PORT = os.environ["DB_PORT"]
+DB_NAME = os.environ["DB_NAME"]
 
 DATABASE_URI = f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
@@ -33,9 +33,9 @@ location_table = Table('location', meta,
                        Column('coordinate', Geometry("POINT",  srid=4326)),
                        Column('creation_time', DateTime))
 
-KAFKA_TOPIC = "test"
-KAFKA_HOST = "localhost"
-KAFKA_PORT = 30002
+KAFKA_TOPIC = os.environ["KAFKA_TOPIC"]
+KAFKA_HOST = os.environ["KAFKA_HOST"]
+KAFKA_PORT = os.environ["KAFKA_PORT"]
 
 KAFKA_SERVER = f"{KAFKA_HOST}:{KAFKA_PORT}"
 
